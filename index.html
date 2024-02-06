@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products available</title>
+    
+</head>
+<body>
+
+<header>
+    <h1>Products available</h1>
+    <button id="connect-button">Connect Wallet</button>
+    <input type="text" id="search-bar" placeholder="Search...">
+</header>
+
+<div id="product-container">
+    <div class="product" onclick="openModal('Redmi Note 10 Pro Max', 'product1.jpg','Made by Redmi')">
+        <img src= "redmi_note_10_pro_max.jpg" alt="Product 1">
+        <h3>Redmi Note 10 Pro Max</h3>
+        <p>Made by Redmi</p>
+    </div>
+    <div class="product" onclick="openModal('Iphone 15 Pro Max', 'product2.jpg','Made by Apple')">
+        <img src= "iphone_15_pro_max.jpg" alt="Product 2">
+        <h3>Iphone 15 Pro Max</h3>
+        <p>Made by Apple</p>
+    </div>
+    <div class="product" onclick="openModal('Nothing Phone 2', 'product2.jpg','Made by Nothing')">
+      <img src= "nothing_phone_2.jpg" alt="Product 3">
+      <h3>Nothing Phone 2</h3>
+      <p>Made by Nothing</p>
+  </div>
+
+</div>
+
+<div id="modal">
+    <div id="modal-content">
+        <span onclick="closeModal()" style="float: right; cursor: pointer;">&times;</span>
+        <h2 id="modal-title"></h2>
+        <img id="modal-image" alt="">
+        <p id="modal-description"></p>
+        <button onclick="buyProduct()">Buy</button>
+    </div>
+</div>
+
+<script>
+    function openModal(title, image,TITLE2) {
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-image').src = image;
+
+        document.getElementById('modal-description').innerText = " " + TITLE2 + ".";
+        document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+    }
+
+    function buyProduct() {
+        // Implement buy functionality here
+        alert('Buy functionality not implemented for this task.');
+    }
+
+    // Extra points: Search functionality
+    document.getElementById('search-bar').addEventListener('input', function () {
+        let searchTerm = this.value.toLowerCase();
+        let products = document.getElementsByClassName('product');
+
+        for (let product of products) {
+            let productName = product.querySelector('h3').innerText.toLowerCase();
+            if (productName.includes(searchTerm)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        }
+    });
+</script>
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
+  }
+
+  header {
+      background-color: #28DEE4;
+      color: white;
+      text-align: center;
+      padding: 1em;
+  }
+
+  #product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 1em;
+  }
+
+  .product {
+      border: 1px solid #ddd;
+      margin: 1em;
+      padding: 1em;
+      cursor: pointer;
+      background-color: white;
+  }
+
+  .product img {
+      max-width: 100%;
+      height: auto;
+  }
+
+  #modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      background-color: rgba(4, 128, 163, 0.5);
+      justify-content: center;
+      align-items: center;
+  }
+
+    #modal-content {
+        background-color: white;
+        padding: 2em;
+        max-width: 80%;
+        text-align: center;
+    }
+
+    #search-bar {
+        position: absolute;
+        top: 6%;
+        right: 0;
+        margin: 1em;
+        padding: 0.5em;
+    }
+</style>
+
+</body>
+</html>
